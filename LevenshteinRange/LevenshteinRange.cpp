@@ -28,12 +28,12 @@ public:
 		BuildWords(s2);
 	}
 	void BuildWords(char *s) {
-		vector<string>* ArrayName;
+		vector<string> ArrayName;
 		int a = 0; int b = 0;
 		if (strcmp(s,s1)) {
-			*ArrayName = FWordsArray;
+			ArrayName = FWordsArray;
 		}
-		else if (strcmp(s,s2)) { *ArrayName = SWordsArray; }
+		else if (strcmp(s,s2)) { ArrayName = SWordsArray; }
 		for (int i = 0; i < strlen(s); i++) {
 			if (s[i] != ' ') {
 				ArrayName[a][b] = s[i];
