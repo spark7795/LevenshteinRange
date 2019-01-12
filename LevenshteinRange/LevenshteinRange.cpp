@@ -32,8 +32,8 @@ public:
 		}
 		else if (s == s2) { ArrayName = SWordsArray; }
 		for (int i = 0; i < strlen(s); i++) {
-			if (sname[i] != ' ') {
-				ArrayName[a][b] = sname[i];
+			if (s[i] != ' ') {
+				ArrayName[a][b] = s[i];
 			}
 			else {	a++; }
 			b++;
