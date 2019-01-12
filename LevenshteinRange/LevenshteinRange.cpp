@@ -3,16 +3,20 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <vector>
 using namespace std;
 class Levenstein {
 private:
 	char *sname;
-	
+	vector<string> ArrayName;
 	int a,b;
 
 public:
-	char **FWordsArray = new char*[];
-	char **SWordsArray = new char*[];
+	//char **FWordsArray = new char*[];
+	//char **SWordsArray = new char*[];
+	vector<string> FWordsArray;
+	vector<string> SWordsArray;
+
 	char *s1;
 	char *s2;
 	Levenstein () {}
@@ -23,9 +27,13 @@ public:
 		BuildWords(s2);
 	}
 	void BuildWords(char *s) {
+		if (s == s1) {
+			ArrayName = FWordsArray;
+		}
+		else if (s == s2) { ArrayName = SWordsArray; }
 		for (int i = 0; i < strlen(s); i++) {
 			if (sname[i] != ' ') {
-				FWordsArray[a][b] = sname[i];
+				ArrayName[a][b] = sname[i];
 			}
 			else {	a++; }
 			b++;
@@ -41,7 +49,7 @@ int main()
 	char *SecondSentence = "John is quicker than Mary";
 	Levenstein range(FirstSentence, SecondSentence);
 	//cout << range.s1 << "\n";
-	cout << range.FWordsArray;
+	cout << range.FWordsArray[0][0];
 	//cout << range.s1[0] << "\n";
 	system("pause");
     return 0;
