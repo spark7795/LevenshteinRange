@@ -4,12 +4,13 @@
 #include "stdafx.h"
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 class Levenstein {
 private:
-	char *sname;
-	vector<string> ArrayName;
-	int a,b;
+	//char *sname;
+	//vector<string>* ArrayName;
+	//int a = 0; int b = 0;
 
 public:
 	//char **FWordsArray = new char*[];
@@ -27,16 +28,20 @@ public:
 		BuildWords(s2);
 	}
 	void BuildWords(char *s) {
-		if (s == s1) {
-			ArrayName = FWordsArray;
+		vector<string>* ArrayName;
+		int a = 0; int b = 0;
+		if (strcmp(s,s1)) {
+			*ArrayName = FWordsArray;
 		}
-		else if (s == s2) { ArrayName = SWordsArray; }
+		else if (strcmp(s,s2)) { *ArrayName = SWordsArray; }
 		for (int i = 0; i < strlen(s); i++) {
 			if (s[i] != ' ') {
 				ArrayName[a][b] = s[i];
+				b++;
 			}
-			else {	a++; }
-			b++;
+			else { a++; b = 0; }
+			
+			
 		}
 	}
 
