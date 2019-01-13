@@ -18,31 +18,35 @@ public:
 	vector<string> FWordsArray;
 	vector<string> SWordsArray;
 
-	char *s1;
-	char *s2;
+	
 	Levenstein () {}
-	Levenstein(char *FirstSentence, char *SecondSentence) {
-		s1 = FirstSentence;
-		s2 = SecondSentence;
+	Levenstein(string FirstSentence, string SecondSentence) {
+		string s1 = FirstSentence;
+		string s2 = SecondSentence;
 		BuildWords(s1);
 		BuildWords(s2);
 	}
-	void BuildWords(char *s) {
+	void BuildWords(string s) {
 		vector<string> ArrayName;
 		int a = 0; int b = 0;
-		if (strcmp(s,s1)) {
+		if (s=="s1") {
 			ArrayName = FWordsArray;
 		}
-		else if (strcmp(s,s2)) { ArrayName = SWordsArray; }
-		for (int i = 0; i < strlen(s); i++) {
-			if (s[i] != ' ') {
-				ArrayName[a][b] = s[i];
-				b++;
-			}
-			else { a++; b = 0; }
-			
-			
+		else if (s=="s2") { ArrayName = SWordsArray; }
+		for (int i = 0; i < s.length(); i++) {
+			while (s[i] != ' ') {
+				//ArrayName[a][b] = s[i];
+				//ArrayName[a].push_back(s[i]);
+				ArrayName[a] += s[i];
+				//strcpy(ArrayName[a][b], s[i]);
+				//b++;
+			} //else { a++; b = 0; }
+			a++;
 		}
+		if (s == "s1") {
+			FWordsArray = ArrayName;
+		}
+		else if (s == "s2") { SWordsArray = ArrayName; }
 	}
 
 };
@@ -50,8 +54,8 @@ public:
 int main()
 {
 	
-	char *FirstSentence = "Mary is quicker than John";
-	char *SecondSentence = "John is quicker than Mary";
+	string FirstSentence = "Mary is quicker than John";
+	string SecondSentence = "John is quicker than Mary";
 	Levenstein range(FirstSentence, SecondSentence);
 	//cout << range.s1 << "\n";
 	cout << range.FWordsArray[0][0];
