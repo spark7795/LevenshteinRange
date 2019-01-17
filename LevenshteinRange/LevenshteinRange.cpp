@@ -1,6 +1,3 @@
-// LevenshteinRange.cpp: определяет точку входа для консольного приложения.
-//
-
 #include "stdafx.h"
 #include <iostream>
 #include <vector>
@@ -25,15 +22,15 @@ private:
 			return 1;
 	}
 public:
-	vector<string> FWordsArray;
-	vector<string> SWordsArray;
+	string StringOne, StringTwo;
 	Levenstein () {}
 	int SearchDifference(string StringOne, string StringTwo) {
 		string *s1, *s2;
 		s1 = &StringOne; s2 = &StringTwo;
 		int l1 = (*s1).length();
 		int l2 = (*s2).length();
-
+		cout << "First sentence:\n " << (*s1) << endl;
+		cout << "Second sentence:\n " << (*s2) << endl << endl;
 		vector<int> current_row(l2 + 1);
 		vector<int> previous_row(l2 + 1);
 		
@@ -53,7 +50,6 @@ public:
 
 			}
 		}
-
 		return current_row[l2];
 		}
 	~Levenstein() {
