@@ -28,27 +28,11 @@ public:
 	vector<string> FWordsArray;
 	vector<string> SWordsArray;
 	Levenstein () {}
-	Levenstein(string FirstSentence, string SecondSentence) {
-		string s1 = FirstSentence;
-		string s2 = SecondSentence;
-	//	BuildWords(s1,s2);
-		
-	}
-/*	void BuildWords(string s1, string s2) {
-		string fword,sword;
-		stringstream ss1(s1);
-		stringstream ss2(s2);
-		while (ss1 >> fword)
-			FWordsArray.push_back(fword);
-		while (ss2 >> sword)
-			SWordsArray.push_back(sword);
-	}*/
-
-	int SearchDifference(string FirstSentence, string SecondSentence) {
-		string s1 = FirstSentence;
-		string s2 = SecondSentence;
-		int l1 = s1.length();
-		int l2 = s2.length();
+	int SearchDifference(string StringOne, string StringTwo) {
+		string *s1, *s2;
+		s1 = &StringOne; s2 = &StringTwo;
+		int l1 = (*s1).length();
+		int l2 = (*s2).length();
 
 		vector<int> current_row(l2 + 1);
 		vector<int> previous_row(l2 + 1);
@@ -64,7 +48,7 @@ public:
 				int temp1, temp2, temp3;
 				temp1 = previous_row[j] + 1;
 				temp2 = current_row[j - 1] + 1;
-				temp3 = previous_row[j - 1] + CharEqual(s1[i - 1], s2[j - 1]);
+				temp3 = previous_row[j - 1] + CharEqual((*s1)[i - 1], (*s2)[j - 1]);
 				current_row[j] = min3(temp1, temp2, temp3);
 
 			}
@@ -72,20 +56,16 @@ public:
 
 		return current_row[l2];
 		}
+	~Levenstein() {
+	}
 };
 
 int main()
 {
-	
+	Levenstein range;
 	string FirstSentence = "Mary is quicker than John";
 	string SecondSentence = "John is quicker than Mary";
-	Levenstein range(FirstSentence, SecondSentence);
-	/*cout << "Words in text 1 : " << range.FWordsArray.size() << endl;
-	cout << "\n" << range.FWordsArray[5][0] << "\n";
-	cout << "Words in text 2 : " << range.SWordsArray.size() << endl;
-	cout << "\n" << range.SWordsArray[0][0] << "\n";*/
-	cout << "Levenshtein distance:" << range.SearchDifference(FirstSentence, SecondSentence);
-	//cout << range.s1[0] << "\n";
+	cout << "Levenshtein distance:" << range.SearchDifference(FirstSentence, SecondSentence) << endl;
 	system("pause");
     return 0;
 }
